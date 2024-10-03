@@ -403,15 +403,23 @@ class eqs(wx.Frame):
         dlg.ShowModal()
         dlg.Destroy()
 
+   def resource_path(self,relative_path):
+        """ Get absolute path to resource, works for dev and for PyInstaller """
+        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+        return os.path.join(base_path, relative_path)
+
     def onHelp(self, event):
         thePath = None
-        pths = ["../help.htm", "help.htm", "../../help.htm"]
-        for pth in pths:
-            if os.path.exists(pth):
-                thePath = pth
-                break
+#        pths = ["../help.htm", "./help.htm", "../../help.htm"]        
+#        for pth in pths:        
+#            if os.path.exists(pth):
+#                thePath = pth
+#                break
+        pth = self.resource_path('./help.htm')        
+        if os.path.exists(pth):
+            thePath = pth
 
-        if thePath is not None:
+       if thePath is not None:
             provider = wx.SimpleHelpProvider()
             wx.HelpProvider.Set(provider)
 
