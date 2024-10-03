@@ -1,0 +1,5 @@
+#!/bin/zsh
+mv LaSolv.spec  LaSolv.spec.tmp
+pyi-makespec --windowed --onedir  --name 'LaSolv' --icon 'src/LaSolv_icon.icns' --paths 'src' --add-data 'src/help.htm:.' --target-arch arm64 --windowed src/gui_wx.py
+mv LaSolv.spec LaSolv_mac.spec
+mv LaSolv.spec.tmp Lasolv.spec
